@@ -1,0 +1,21 @@
+# .github/workflows/dropdown-workflow.yml
+name: Example Workflow with Dropdown
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print selected environment
+        run: echo "Deploying to ${{ github.event.inputs.environment }} environment"
